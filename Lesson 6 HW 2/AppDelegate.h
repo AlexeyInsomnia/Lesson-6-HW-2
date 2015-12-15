@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    missed,
+    hit,
+} hitSquare;
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (assign, nonatomic) hitSquare hitInside;
+
 
 
 @end

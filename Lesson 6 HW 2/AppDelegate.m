@@ -17,6 +17,69 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    self.hitInside = hit;
+    
+    self.hitInside = missed;
+  
+    
+    CGRect rectInMiddle = CGRectMake(3, 3, 3, 3);
+    
+    CGPoint point = CGPointMake(0, 0);
+    
+    int x=0;
+    
+    int y=0;
+    
+    int count = 1;
+    
+    BOOL result ;
+    
+    NSNumber* boolObject = [NSNumber numberWithBool:result];
+    
+    NSNumber* integerObject = [NSNumber numberWithInteger:x];
+    
+    NSArray* arrayForPractice = [NSArray arrayWithObjects:boolObject, integerObject, nil];
+    
+    NSLog(@"just for practive NSNumber boolObject = %d, integerObject = %ld",
+          [[arrayForPractice objectAtIndex:0] boolValue],
+          [[arrayForPractice objectAtIndex:1] integerValue]);
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    
+    
+    for (int i = 0; i<=100; i++) {
+        x = arc4random() % 11;
+        y = arc4random() %11;
+        point = CGPointMake(x, y);
+        result = CGRectContainsPoint(rectInMiddle, point);
+        
+        if (result) {
+            self.hitInside = hit;
+            NSLog(@"Point - %@ HIT, number of shot is - %d, hitInside now is - %d", NSStringFromCGPoint(point), count++, self.hitInside);
+            
+            
+            [array addObject:[NSValue valueWithCGPoint:point]];
+            
+            if (count == 4) {
+                i = 100;
+            }
+            
+            
+        } else {
+                    self.hitInside = missed;
+                   NSLog(@"Point - %@ MISSED, hitInside now is - %d", NSStringFromCGPoint(point),  self.hitInside);
+        }
+  
+        
+    }
+    NSLog(@"This is for practive NSValue in MASSIVE we have 3 hit points with coords:");
+    for (NSValue* value in array ) {
+        CGPoint pointInSide = [value CGPointValue];
+        NSLog( @"%@", NSStringFromCGPoint(pointInSide));
+    }
+    
     return YES;
 }
 
